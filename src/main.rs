@@ -1,6 +1,7 @@
 use bme680::i2c::Address;
 use bme680::{Bme680, IIRFilterSize, OversamplingSetting, PowerMode, SettingsBuilder};
 use core::time::Duration;
+use clap::Parser;
 use linux_embedded_hal as hal;
 use linux_embedded_hal::Delay;
 
@@ -14,10 +15,18 @@ struct JsonData {
     gas_resistance: u32
 }
 
-fn main() -> Result<(), anyhow::Error> {
-    env_logger::init();
+#[derive(Parser, Debug)]
+#[command(version, about, long_about = "A CLI to grab the measurements of the Bme680 sensor and output them in the console in a JSON format.")]
+struct Args {
+    /// I2C address to use
+    #[arg(long, default_value_t = String::from("/dev/i2c-1"))]
+    i2c_address: String,
+}
 
-    let i2c = hal::I2cdev::new("/dev/i2c-1")?;
+fn main() -> Result<(), anyhow::Error> {
+    let args = Args::parse();
+
+    let i2c = hal::I2cdev::new(args.i2c_address)?;
     let mut delay = Delay {};
     let mut dev = Bme680::init(i2c, &mut delay, Address::Primary)?;
 
