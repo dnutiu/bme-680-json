@@ -1,5 +1,5 @@
 [package]
-name = "bme-680-json"
+name = "bme680-json"
 version = "1.0.0"
 edition = "2021"
 

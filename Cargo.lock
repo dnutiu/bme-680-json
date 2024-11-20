@@ -85,7 +85,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b048fb63fd8b5923fc5aa7b340d8e156aec7ec02f0c78fa8a6ddc2613f6f71de"
 
 [[package]]
-name = "bme-680-json"
+name = "bme680"
+version = "0.9.0"
+source = "git+https://github.com/dnutiu/bme680-rust.git?branch=v0.9.0#31f3a4c4c0d03e4a7f0da9a898f9d25844894773"
+dependencies = [
+ "anyhow",
+ "bitflags 2.6.0",
+ "embedded-hal",
+ "linux-embedded-hal",
+ "log",
+]
+
+[[package]]
+name = "bme680-json"
 version = "1.0.0"
 dependencies = [
  "anyhow",
@@ -96,18 +108,6 @@ dependencies = [
  "log",
  "serde",
  "serde_json",
-]
-
-[[package]]
-name = "bme680"
-version = "0.9.0"
-source = "git+https://github.com/dnutiu/bme680-rust.git?branch=v0.9.0#31f3a4c4c0d03e4a7f0da9a898f9d25844894773"
-dependencies = [
- "anyhow",
- "bitflags 2.6.0",
- "embedded-hal",
- "linux-embedded-hal",
- "log",
 ]
 
 [[package]]
