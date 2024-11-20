@@ -2,6 +2,7 @@ use bme680::i2c::Address;
 use bme680::{Bme680, IIRFilterSize, OversamplingSetting, PowerMode, SettingsBuilder};
 use core::time::Duration;
 use clap::Parser;
+use embedded_hal::delay::DelayNs;
 use linux_embedded_hal as hal;
 use linux_embedded_hal::Delay;
 
@@ -42,6 +43,7 @@ fn main() -> Result<(), anyhow::Error> {
     dev.set_sensor_settings(&mut delay, &settings)?;
     dev.set_sensor_mode(&mut delay, PowerMode::ForcedMode)?;
 
+    Delay {}.delay_ms(5000u32);
     let (data, _) = dev.get_measurement(&mut delay)?;
     let serialized = serde_json::to_string(&JsonData{
         temperature: data.temperature_celsius(),
