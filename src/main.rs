@@ -22,6 +22,10 @@ struct Args {
     /// I2C address to use
     #[arg(long, default_value_t = String::from("/dev/i2c-1"))]
     i2c_address: String,
+
+    /// Delay reading by the specified amount in milliseconds.
+    #[arg(long, default_value_t = 1000)]
+    delay_before_read: u32
 }
 
 fn main() -> Result<(), anyhow::Error> {
@@ -43,7 +47,7 @@ fn main() -> Result<(), anyhow::Error> {
     dev.set_sensor_settings(&mut delay, &settings)?;
     dev.set_sensor_mode(&mut delay, PowerMode::ForcedMode)?;
 
-    Delay {}.delay_ms(5000u32);
+    Delay {}.delay_ms(args.delay_before_read);
     let (data, _) = dev.get_measurement(&mut delay)?;
     let serialized = serde_json::to_string(&JsonData{
         temperature: data.temperature_celsius(),
