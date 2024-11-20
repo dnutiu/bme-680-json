@@ -12,5 +12,5 @@ Then run:
 
 ```bash
 bme680-json
-{"temperature":32.66,"pressure":622.29,"humidity":100.0,"gas_resistance":802874}
+{"temperature":23.55,"pressure":991.04,"humidity":60.444,"gas_resistance":1443025}
 ```

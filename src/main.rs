@@ -24,7 +24,7 @@ struct Args {
     i2c_address: String,
 
     /// Delay reading by the specified amount in milliseconds.
-    #[arg(long, default_value_t = 1000)]
+    #[arg(long, default_value_t = 2000)]
     delay: u32
 }
 
