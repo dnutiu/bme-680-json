@@ -89,7 +89,7 @@ dependencies = [
 
 [[package]]
 name = "bme680-json"
-version = "1.0.2"
+version = "1.0.3"
 dependencies = [
  "anyhow",
  "bme680",
